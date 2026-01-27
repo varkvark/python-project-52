@@ -5,7 +5,7 @@ from django.contrib.auth import login, logout
 from django.contrib import messages
 
 def index_view(request):
-    return render(request, 'task_manager/index.html')
+    return render(request, 'index.html')
 
 # Временные представления для заглушек
 def users_index(request):
