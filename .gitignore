@@ -16,4 +16,3 @@ coverage.xml
 .env
 .python-version
 *.sqlite3
-main.*
