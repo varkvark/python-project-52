@@ -1,0 +1,42 @@
+from django.contrib import messages
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.shortcuts import redirect
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
+
+
+class LoginMixin(LoginRequiredMixin):
+    login_url = reverse_lazy("login")
+
+    def dispatch(self, request, *args, **kwargs):
+        if not request.user.is_authenticated:
+            messages.error(request, _("You are not logged in! Please sign in."))
+            return redirect(self.login_url)
+        return super().dispatch(request, *args, **kwargs)
+
+
+class UserMixin(LoginMixin, UserPassesTestMixin):
+    def test_func(self):
+        user = self.get_object()
+        return self.request.user.is_superuser or self.request.user.id == user.id
+
+    def handle_no_permission(self):
+        messages.error(
+            self.request,
+            _("You do not have permission to change another user."),
+        )
+        return redirect(self.success_url)
+
+
+class TaskMixin(LoginMixin, UserPassesTestMixin):
+    def test_func(self):
+        task = self.get_object()
+        return (
+            self.request.user.is_superuser or self.request.user == task.author
+        )
+
+    def handle_no_permission(self):
+        messages.error(
+            self.request, _("A task can only be deleted by its author.")
+        )
+        return redirect(self.success_url)
