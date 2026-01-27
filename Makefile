@@ -17,7 +17,7 @@ start-server:
 	python manage.py runserver
 
 lint:
-	ruff check task_manager
+	ruff check
 
 migrate:
 	python manage.py makemigrations
