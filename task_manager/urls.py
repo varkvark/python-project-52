@@ -14,37 +14,19 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
-from django.urls import path, include
-from . import views
+from django.urls import include, path
 
-
-# Временные URL-паттерны для каждого "приложения"
-users_patterns = [
-    path('', views.users_index, name='index'),
-    path('create/', views.users_create, name='create'),
-]
-
-statuses_patterns = [
-    path('', views.statuses_index, name='index'),
-]
-
-labels_patterns = [
-    path('', views.labels_index, name='index'),
-]
-
-tasks_patterns = [
-    path('', views.tasks_index, name='index'),
-]
+from task_manager.views import CustomLoginView, CustomLogoutView, IndexView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('i18n/', include('django.conf.urls.i18n')),
-    path('', views.index_view, name='index'),
-    path('login/', views.login_view, name='login'),
-    path('logout/', views.logout_view, name='logout'),
-    path('users/', include((users_patterns, 'users'))),
-    path('statuses/', include((statuses_patterns, 'statuses'))),
-    path('labels/', include((labels_patterns, 'labels'))),
-    path('tasks/', include((tasks_patterns, 'tasks'))),
+    path("admin/", admin.site.urls),
+    path("", IndexView.as_view(), name="index"),
+    path("login/", CustomLoginView.as_view(), name="login"),
+    path("logout/", CustomLogoutView.as_view(), name="logout"),
+    path("users/", include("task_manager.users.urls")),
+    path("statuses/", include("task_manager.statuses.urls")),
+    path("tasks/", include("task_manager.tasks.urls")),
+    path("labels/", include("task_manager.labels.urls")),
 ]
