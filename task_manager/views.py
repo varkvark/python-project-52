@@ -1,34 +1,38 @@
-from django.shortcuts import render, redirect
-from django.http import HttpResponse
-from django.contrib.auth.decorators import login_required
-from django.contrib.auth import login, logout
 from django.contrib import messages
+from django.contrib.auth import logout
+from django.contrib.auth.views import LoginView
+from django.shortcuts import redirect, render
+from django.urls import reverse_lazy
+from django.utils.translation import gettext_lazy as _
+from django.views import View
 
-def index_view(request):
-    return render(request, 'index.html')
 
-# Временные представления для заглушек
-def users_index(request):
-    return HttpResponse("<h1>Users page (temporary)</h1><p>This will be implemented later.</p>")
+class IndexView(View):
+    def get(self, request):
+        return render(request, "index.html", context={})
 
-def statuses_index(request):
-    return HttpResponse("<h1>Statuses page (temporary)</h1><p>This will be implemented later.</p>")
 
-def labels_index(request):
-    return HttpResponse("<h1>Labels page (temporary)</h1><p>This will be implemented later.</p>")
+class CustomLoginView(LoginView):
+    template_name = "login.html"
 
-def tasks_index(request):
-    return HttpResponse("<h1>Tasks page (temporary)</h1><p>This will be implemented later.</p>")
+    def form_valid(self, form):
+        response = super().form_valid(form)
+        messages.success(self.request, _("You are login"))
+        return response
 
-def users_create(request):
-    return HttpResponse("<h1>Registration page (temporary)</h1><p>This will be implemented later.</p>")
+    def get_success_url(self):
+        return reverse_lazy("index")
 
-def login_view(request):
-    # Просто редирект на главную страницу
-    messages.info(request, "Login functionality will be implemented later.")
-    return redirect('index')
 
-def logout_view(request):
-    # Просто редирект на главную страницу
-    messages.info(request, "Logout functionality will be implemented later.")
-    return redirect('index')
+class CustomLogoutView(View):
+    def get(self, request):
+        return redirect("index")
+
+    def post(self, request):
+        if request.user.is_authenticated:
+            logout(request)
+            messages.info(request, _("You are logout"))
+        else:
+            messages.warning(request, _("You are not logged in"))
+
+        return redirect("index")
