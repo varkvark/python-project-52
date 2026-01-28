@@ -15,6 +15,7 @@ from pathlib import Path
 from dotenv import load_dotenv
 import dj_database_url
 from django.utils.translation import gettext_lazy as _
+import rollbar
 
 
 load_dotenv()
@@ -167,3 +168,5 @@ ROLLBAR = {
     "code_version": "1.0",
     "root": BASE_DIR,
 }
+
+rollbar.init(**ROLLBAR)
