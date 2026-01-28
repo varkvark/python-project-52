@@ -1,6 +1,6 @@
 ### Hexlet tests and linter status:
 [![Actions Status](https://github.com/varkvark/python-project-52/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/varkvark/python-project-52/actions)
-[![hexlet-check](https://github.com/varkvark/python-project-52/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/varkvark/python-project-52/actions/workflows/hexlet-check.yml)
+[![Python CI](https://github.com/varkvark/python-project-52/actions/workflows/PyCI.yml/badge.svg)](https://github.com/varkvark/python-project-52/actions/workflows/PyCI.yml)
 
 
 # Task Manager
@@ -47,7 +47,7 @@ make start-server
 - Bootstrap 5
 - Gunicorn
 
-## Основные команды 🔧
+## Основные команды
 
 ```bash
 make install      # Установить зависимости
