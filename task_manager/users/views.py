@@ -17,6 +17,7 @@ from task_manager.users.models import User
 
 class IndexUserView(View):
     def get(self, request):
+        raise Exception("ROLLBAR TEST! Delete later!")  # DELETE!
         users = User.objects.all().order_by("id")
         return render(
             request,
