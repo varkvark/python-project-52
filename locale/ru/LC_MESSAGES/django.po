@@ -154,9 +154,8 @@ msgstr "Вход"
 
 #: task_manager/templates/base.html:48
 #: task_manager/templates/users/create.html:8
-#: task_manager/templates/users/create.html:12
 msgid "Registration"
-msgstr "Зарегистрировать"
+msgstr "Регистрация"
 
 #: task_manager/templates/index.html:8
 msgid "Greetings from Hexlet!"
@@ -282,6 +281,10 @@ msgstr "Дата создания"
 #: task_manager/templates/tasks/update.html:8
 msgid "Changing a task"
 msgstr "Изменение задачи"
+
+#: task_manager/templates/users/create.html:12
+msgid "Registr"
+msgstr "Зарегистрировать"
 
 #: task_manager/templates/users/delete.html:10
 msgid "Deleting user"
