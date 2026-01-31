@@ -32,6 +32,9 @@ dev = [
     "pytest-django>=4.11.1",
 ]
 
+[tool.hatch.build.targets.wheel]
+packages = ["task_manager"]
+
 [tool.pytest.ini_options]
 DJANGO_SETTINGS_MODULE = "task_manager.settings"
 python_files = ["test_*.py", "*_test.py", "tests_*.py", "*_tests.py"]
