@@ -25,6 +25,14 @@ jobs:
         run: |
           make lint
 
+      - name: Run pytest
+        run: |
+          make test
+
+      - name: Run pytest-cov
+        run: |
+          make test-cov
+
       - name: SonarQubeScan
         uses: sonarsource/sonarqube-scan-action@v6
         env:
