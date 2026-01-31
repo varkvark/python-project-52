@@ -156,7 +156,7 @@ msgstr "Вход"
 #: task_manager/templates/users/create.html:8
 #: task_manager/templates/users/create.html:12
 msgid "Registration"
-msgstr "Регистрация"
+msgstr "Зарегистрировать"
 
 #: task_manager/templates/index.html:8
 msgid "Greetings from Hexlet!"
