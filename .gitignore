@@ -12,6 +12,7 @@ build/
 demo.cast
 .ruff_cache
 .coverage
+.coveragerc
 coverage.xml
 .env
 .python-version
