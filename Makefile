@@ -27,7 +27,7 @@ collectstatic:
 	python manage.py collectstatic --no-input
 
 test:
-	python manage.py test
+	uv run python manage.py test
 
 test-cov:
 	uv run pytest --cov=task_manager --cov-report=term --cov-report=xml
