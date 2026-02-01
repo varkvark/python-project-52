@@ -1,5 +1,5 @@
 install:
-	uv sync
+	uv sync --all-groups
 
 build:
 	./build.sh
@@ -8,23 +8,23 @@ render-start:
 	gunicorn task_manager.wsgi
 
 update_lang:
-	django-admin makemessages -l ru
+	uv run django-admin makemessages -l ru
 
 compile_lang:
-	django-admin compilemessages
+	uv run django-admin compilemessages
 
 start-server:
-	python manage.py runserver
+	uv run python manage.py runserver
 
 lint:
-	ruff check
+	uv run ruff check
 
 migrate:
-	python manage.py makemigrations
-	python manage.py migrate
+	uv run python manage.py makemigrations
+    uv run python manage.py migrate
 
 collectstatic:
-	python manage.py collectstatic --no-input
+	uv run python manage.py collectstatic --no-input
 
 test:
 	uv run python manage.py test
