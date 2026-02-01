@@ -21,7 +21,7 @@ lint:
 
 migrate:
 	uv run python manage.py makemigrations
-    uv run python manage.py migrate
+	uv run python manage.py migrate
 
 collectstatic:
 	uv run python manage.py collectstatic --no-input
