@@ -7,6 +7,10 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    env:
+      SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
+      DATABASE_URL: 'sqlite:///db.sqlite3'
+      PYTHONPATH: ${{ github.workspace }}
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -20,6 +24,9 @@ jobs:
         run: |
           pip install uv ruff
           make install
+
+      - name: Create missing static directory
+        run: mkdir -p static
 
       - name: Run linter
         run: |
